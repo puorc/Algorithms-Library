@@ -11,10 +11,10 @@ public class BinarySearch {
             int mid=(lo+hi)/2;
             if(a[mid]==key)
                 return mid;
-            if(a[mid]<key)
-                lo=mid+1;
-            if(a[mid]>key)
+            else if(a[mid]>key)
                 hi=mid-1;
+            else
+                lo=mid+1;
         }
         return -1;
     }
