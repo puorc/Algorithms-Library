@@ -17,4 +17,16 @@ public class ex1$2$19 {
         month=Integer.parseInt(date[1]);
         year=Integer.parseInt(date[2]);
     }
+    public boolean equals(Object a){
+        if(this==a)
+            return true;
+        if(a==null)
+            return false;
+        if(this.getClass()==a.getClass()){
+            ex1$2$19 that=(ex1$2$19)a;
+            if(that.name.equals(that.name))   //Don't use this.name==that.name
+                return true;
+        }
+        return false;
+    }
 }
