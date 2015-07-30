@@ -11,10 +11,14 @@ public class Stack<Item> implements Iterable<Item>  {
     private int N;
     public Stack(){}
     public Stack(Stack<Item> a){
+        Stack<Item> TempStack=new Stack<>();
         node tmp=a.getFirst();
-        while(tmp.next!=null){
-            this.push(tmp.item);
-            //need a method to reverse this stack, later to add;
+        while(tmp!=null){
+            TempStack.push(tmp.item);
+            tmp=tmp.next;
+        }
+        while(!TempStack.isEmpty()){
+            this.push(TempStack.pop());
         }
     }
     public node getFirst() { return first; }
