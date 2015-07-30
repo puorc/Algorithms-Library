@@ -10,7 +10,6 @@ public class Cat {
             out.println(s);
             in.close();
         }
-
         out.close();
     }
 }

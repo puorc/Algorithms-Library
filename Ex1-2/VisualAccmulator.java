@@ -15,7 +15,7 @@ public class VisualAccmulator {
         StdDraw.setPenColor(StdDraw.DARK_GRAY);
         StdDraw.point(N, val);
         StdDraw.setPenColor(StdDraw.RED);
-        StdDraw.point(N,total/N);
+        StdDraw.point(N, total / N);
     }
     public double avarage(){
         return total/N;
