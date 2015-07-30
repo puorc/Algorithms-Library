@@ -2,9 +2,9 @@
  * Created by ZhaoPu on 2015/7/30.
  */
 import java.util.Iterator;
-
 public class Bag<Item> implements Iterable<Item>{
     private Node first;
+    private int N;
     private class Node{
         Item item;
         Node next;
@@ -14,6 +14,7 @@ public class Bag<Item> implements Iterable<Item>{
         first=new Node();
         first.item=item;
         first.next=oldfirst;
+        N++;
     }
     public Iterator<Item> iterator(){
         return new ListIterator();
@@ -30,4 +31,6 @@ public class Bag<Item> implements Iterable<Item>{
             return item;
         }
     }
+    public boolean isEmpty(){ return N==0; }
+    public int size(){ return N ;}
 }
