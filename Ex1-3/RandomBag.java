@@ -1,10 +1,8 @@
-import java.util.Iterator;
-
 /**
  * Created by ZhaoPu on 2015/7/30.
  */
-import java.util.Random;
 import java.util.Iterator;
+import java.util.Random;
 public class RandomBag<Item> implements Iterable<Item> {
     private Node first;
     private int N;
@@ -52,17 +50,6 @@ public class RandomBag<Item> implements Iterable<Item> {
             return a[theRandom];
         }
     }
-      /*  private Node current=first
-        public boolean hasNext(){
-            return current!=null;
-        }
-        public void remove(){}
-        public Item next(){
-            Item item=current.item;
-            current=current.next;
-            return item;
-        }
-    }     */
     public boolean isEmpty(){ return N==0; }
     public int size(){ return N ;}
 }
