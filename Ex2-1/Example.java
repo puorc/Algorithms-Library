@@ -3,10 +3,10 @@
  */
 public abstract class Example {
     public abstract void sort(Comparable[] a);
-    private boolean less(Comparable a,Comparable b){
+    protected boolean less(Comparable a,Comparable b){
         return a.compareTo(b)<0;
     }
-    private void exch(Comparable[] a,int i,int j){
+    protected void exch(Comparable[] a,int i,int j){
         Comparable t=a[i];
         a[i]=a[j];
         a[j]=t;
