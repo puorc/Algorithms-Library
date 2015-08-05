@@ -1,0 +1,19 @@
+//   Completed by ZhaoPu  using SortCompare.java
+//   1000 elements 100 times
+//   the number between means "faster"
+
+//  Normal  (Only use StdRandom.uniform()  )
+//  Shell 23.249999999999996 Selection
+//  Insertion 1.5609065155807367 Selection
+
+//  only 0 and 1  ( uniform(2) )
+//  Insertion 5.337931034482759 Selection
+//  Shell 43.352941176470594 Selection
+
+//  sorted
+//  Shell 54.000000000000036 Selection
+//  Insertion 143.0000000000000 Selection
+
+//  reversed
+//  Insertion 0.7366071428571429 Selection
+//  Shell 49.307692307692314 Selection
