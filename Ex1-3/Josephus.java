@@ -1,7 +1,9 @@
 /**
  * Created by ZhaoPu on 2015/8/1.
  */
+
 import java.util.UnknownFormatConversionException;
+
 public class Josephus {
     private final int people;
     private final int count;

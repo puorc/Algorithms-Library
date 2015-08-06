@@ -4,16 +4,20 @@
 public class Counter {
     private final String name;
     private int count;
-    Counter(String id){
-        name=id;
+
+    Counter(String id) {
+        name = id;
     }
-    public void increment(){
+
+    public void increment() {
         count++;
     }
-    public int tally(){
+
+    public int tally() {
         return count;
     }
-    public String toString(){
-        return count+" "+name;
+
+    public String toString() {
+        return count + " " + name;
     }
 }
