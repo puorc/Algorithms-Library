@@ -6,17 +6,20 @@
 //  Shell 23.249999999999996 Selection
 //  Insertion 1.5609065155807367 Selection
 //  Merge 1.0434782608695652 Shell
+//  MergeBU 1.0 Merge
 
 //  only 0 and 1  ( uniform(2) )
 //  Insertion 5.337931034482759 Selection
 //  Shell 43.352941176470594 Selection
 //  Merge 0.5416666666666665 Shell
 //  Merge 8.19047619047619 Insertion
+//  MergeBU 0.7499999999999999 Merge
 
 //  sorted
 //  Shell 54.000000000000036 Selection
 //  Insertion 143.0000000000000 Selection
 //  Merge 0.18749999999999992 Insertion
+//  MergeBU 1.0 Merge
 
 //  reversed
 //  Insertion 0.7366071428571429 Selection
