@@ -12,6 +12,12 @@ public class SortCompare {
             Insertion e = new Insertion();
             e.sort(a);
         }
+        if (alg.equals("Merge")) {
+            Merge.sort(a);
+        }
+        if (alg.equals("MergeBU")) {
+            MergeBU.sort(a);
+        }
         if (alg.equals("Selection")) {
             Selection b = new Selection();
             b.sort(a);
@@ -25,12 +31,10 @@ public class SortCompare {
 
     public static double timeRandomInput(String alg, int N, int T) {
         double total = 0.0;
-        int k = N - 1;
         Double[] a = new Double[N];
         for (int i = 0; i < T; i++) {
             for (int j = 0; j < N; j++)
-                a[j] = (double) (k--);
-            // a[j]=(double)StdRandom.uniform(2);
+                a[j] = StdRandom.uniform();
             total += time(alg, a);
         }
         return total;
