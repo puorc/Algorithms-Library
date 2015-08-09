@@ -8,6 +8,7 @@
 //  Merge 1.0434782608695652 Shell
 //  MergeBU 1.0 Merge
 //  Quick 1.125 Shell
+//  Quick3Way 0.9204545454545455 Quick
 
 //  only 0 and 1  ( uniform(2) )
 //  Insertion 5.337931034482759 Selection
@@ -16,6 +17,7 @@
 //  Merge 8.19047619047619 Insertion
 //  MergeBU 0.7499999999999999 Merge
 //  Quick 0.4880952380952382 Shell
+//  Quick3Way 10.034482758620689 Quick
 
 //  sorted
 //  Shell 54.000000000000036 Selection
