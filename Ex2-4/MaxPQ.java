@@ -5,14 +5,21 @@ public class MaxPQ<Key extends Comparable<Key>> {
     private Key[] pq;
     private int N = 0;
 
-    public MaxPQ(int max) {
-        pq = (Key[]) new Comparable[max + 1];
+    public MaxPQ() {
+        pq = (Key[]) new Comparable[1];
     }
 
     public MaxPQ(Key[] a) {
-        pq = (Key[]) new Comparable[a.length + 1];
+        pq = (Key[]) new Comparable[1];
         for (Key i : a)
             insert(i);
+    }
+
+    private void resize(int max) {
+        Key[] tmp = (Key[]) new Comparable[max];
+        for (int i = 0; i < pq.length; i++)
+            tmp[i] = pq[i];
+        pq = tmp;
     }
 
     private void exch(Comparable[] a, int i, int j) {
@@ -44,6 +51,7 @@ public class MaxPQ<Key extends Comparable<Key>> {
     }
 
     public void insert(Key key) {
+        if ((N + 1) == pq.length) resize(2 * pq.length);
         pq[++N] = key;
         swim(N);
     }
@@ -57,6 +65,7 @@ public class MaxPQ<Key extends Comparable<Key>> {
         exch(pq, 1, N--);
         pq[N + 1] = null;
         sink(1);
+        if (N > 0 && (N + 1) <= pq.length / 4) resize(pq.length / 2);
         return max;
     }
 
