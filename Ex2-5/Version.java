@@ -33,13 +33,10 @@ public final class Version implements Comparable<Version> {
     }
 
     public int compareTo(Version t) {
-        if ((first == t.first) && (second == t.second) && (third == t.third))
-            return 0;
-        if (first > t.first) return 1;
-        else if (first < t.first) return -1;
-        else if ((first == t.first) && (second > t.second)) return 1;
-        else if ((first == t.first) && (second < t.second)) return -1;
-        else if ((first == t.first) && (second == t.second) && (third > t.third)) return 1;
+        int t1 = Integer.parseInt(String.valueOf(first) + String.valueOf(second) + String.valueOf(third));
+        int t2 = Integer.parseInt(String.valueOf(t.first) + String.valueOf(t.second) + String.valueOf(t.third));
+        if (t1 > t2) return 1;
+        else if (t1 == t2) return 0;
         else return -1;
     }
 
