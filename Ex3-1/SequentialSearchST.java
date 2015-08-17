@@ -30,7 +30,7 @@ public class SequentialSearchST<Key, Value> implements ST<Key, Value> {
     private node getNode(Key key) {
         node tmp = first;
         while (tmp != null) {
-            if (tmp.key == key) return tmp;
+            if (tmp.key.equals(key)) return tmp;
             tmp = tmp.next;
         }
         return null;
@@ -69,12 +69,12 @@ public class SequentialSearchST<Key, Value> implements ST<Key, Value> {
 
     public void delete(Key key) {
         node tmp = first;
-        if (tmp.key == key) {
+        if (tmp.key.equals(key)) {
             first = null;
             return;
         }
         while (tmp.next != null) {
-            if (tmp.next.key == key) {
+            if (tmp.next.key.equals(key)) {
                 tmp.next = tmp.next.next;
                 N--;
                 return;
