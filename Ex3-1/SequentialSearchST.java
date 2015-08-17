@@ -81,7 +81,7 @@ public class SequentialSearchST<Key, Value> implements ST<Key, Value> {
             }
             tmp = tmp.next;
         }
-        throw new NoSuchElementException("This");
+        throw new NoSuchElementException();
     }
 
     public Iterable<Key> keys() {
