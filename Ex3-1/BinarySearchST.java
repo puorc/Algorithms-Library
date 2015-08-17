@@ -42,6 +42,7 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements ST<Ke
     }
 
     public void put(Key key, Value value) {
+        if (value == null) delete(key);
         int location = rank(key, 0, N - 1);
         if (location < N && this.key[location].compareTo(key) == 0) val[location] = value;
         else {
@@ -77,19 +78,22 @@ public class BinarySearchST<Key extends Comparable<Key>, Value> implements ST<Ke
     }
 
     public Key select(int k) {
+        if (k < 0 || k > N - 1) throw new IllegalArgumentException();
         return key[k];
     }
 
     public Key ceiling(Key key) {
         int i = rank(key, 0, N - 1);
+        if (i >= N) throw new IllegalArgumentException();
         return this.key[i];
     }
 
     public Key floor(Key key) {
-        if (rank(key) == 0)
-            return this.key[0];
-        int i = rank(key) - 1;
-        return this.key[i];
+        if (rank(key) < 0)
+            throw new IllegalArgumentException();
+        if (rank(key) < N && this.key[rank(key)].compareTo(key) == 0) return this.key[rank(key)];
+        if (rank(key) == 0) throw new IllegalArgumentException();
+        return this.key[rank(key) - 1];
     }
 
     public boolean contains(Key key) {
