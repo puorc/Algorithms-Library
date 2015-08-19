@@ -236,4 +236,15 @@ public class BST<Key extends Comparable, Value> implements ST<Key, Value> {
     public void delete(Key key) {
         root = delete(root, key);
     }
+
+    private int height(node x) {
+        if (x == null) return 0;
+        int left = height(x.left);
+        int right = height(x.right);
+        return Math.max(left, right) + 1;
+    }
+
+    public int height() {
+        return height(root);
+    }
 }
