@@ -84,6 +84,21 @@ public class BST<Key extends Comparable, Value> implements ST<Key, Value> {
         return a;
     }
 
+    public Iterable<Key> keys(Key lo, Key hi) {
+        Queue<Key> a = new Queue<>();
+        keys(a, root, lo, hi);
+        return a;
+    }
+
+    private void keys(Queue a, node x, Key lo, Key hi) {
+        if (x == null) return;
+        int cmpl = x.key.compareTo(lo);
+        int cmph = x.key.compareTo(hi);
+        if (cmpl > 0) keys(a, x.left, lo, hi);
+        if (cmpl >= 0 && cmph <= 0) a.enqueue(x.key);
+        if (cmph < 0) keys(a, x.right, lo, hi);
+    }
+
     private Key min(node x) {
         if (x.left == null) return x.key;
         return min(x.left);
@@ -91,6 +106,11 @@ public class BST<Key extends Comparable, Value> implements ST<Key, Value> {
 
     public Key min() {
         return min(root);
+    }
+
+    private node findMin(node x) {
+        if (x.left == null) return x;
+        return findMin(x.left);
     }
 
     private Key max(node x) {
@@ -159,5 +179,50 @@ public class BST<Key extends Comparable, Value> implements ST<Key, Value> {
 
     public int rank(Key key) {
         return rank(root, key);
+    }
+
+    private node deleteMin(node x) {
+        if (x.left == null) return x.right;
+        x.left = deleteMin(x.left);
+        x.N = size(x.left) + size(x.right) + 1;
+        return x;
+    }
+
+    public void deleteMin() {
+        root = deleteMin(root);
+    }
+
+    private node deleteMax(node x) {
+        if (x.right == null) return x.left;
+        x.right = deleteMax(x.right);
+        x.N = size(x.left) + size(x.right) + 1;
+        return x;
+    }
+
+    public void deleteMax() {
+        root = deleteMax(root);
+    }
+
+    private node delete(node x, Key key) {
+        if (x == null) return null;
+        int cmp = key.compareTo(x.key);
+        if (cmp > 0) x.right = delete(x.right, key);
+        else if (cmp < 0) x.left = delete(x.left, key);
+        else {
+            if (x.left == null) return x.right;
+            else if (x.right == null) return x.left;
+            else {
+                node t = x;
+                x = findMin(x.right);
+                x.right = deleteMin(t.right);
+                x.left = t.left;
+            }
+        }
+        x.N = size(x.left) + size(x.right) + 1;
+        return x;
+    }
+
+    public void delete(Key key) {
+        root = delete(root, key);
     }
 }
