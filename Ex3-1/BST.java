@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 /**
  * Created by pu on 2015/8/18/018.
  */
@@ -80,5 +82,82 @@ public class BST<Key extends Comparable, Value> implements ST<Key, Value> {
         Queue<Key> a = new Queue<>();
         traverse(a, root);
         return a;
+    }
+
+    private Key min(node x) {
+        if (x.left == null) return x.key;
+        return min(x.left);
+    }
+
+    public Key min() {
+        return min(root);
+    }
+
+    private Key max(node x) {
+        if (x.right == null) return x.key;
+        return max(x.right);
+    }
+
+    public Key max() {
+        return max(root);
+    }
+
+    private Key floor(node x, Key key) {
+        if (x == null) return null;
+        int cmp = x.key.compareTo(key);
+        if (cmp == 0) return x.key;
+        else if (cmp > 0) return floor(x.left, key);
+        else {
+            Key tmp = floor(x.right, key);
+            if (tmp == null) return x.key;
+            return tmp;
+        }
+
+    }
+
+    public Key floor(Key key) {
+        return floor(root, key);
+    }
+
+    private Key ceiling(node x, Key key) {
+        if (x == null) return null;
+        int cmp = x.key.compareTo(key);
+        if (cmp == 0) return x.key;
+        else if (cmp < 0) return ceiling(x.right, key);
+        else {
+            Key tmp = ceiling(x.left, key);
+            if (tmp == null) return x.key;
+            return tmp;
+        }
+    }
+
+    public Key ceiling(Key key) {
+        return ceiling(root, key);
+    }
+
+    private node select(node x, int k) {
+        if (x == null) return null;
+        int t = size(x.left);
+        if (t == k) return x;
+        if (t > k) return select(x.left, k);
+        else {
+            return select(x.right, k - t - 1);
+        }
+    }
+
+    public Key select(int k) {
+        return select(root, k).key;
+    }
+
+    private int rank(node x, Key key) {
+        if (x == null) throw new NoSuchElementException();
+        int cmp = x.key.compareTo(key);
+        if (cmp == 0) return size(x.left);
+        else if (cmp < 0) return rank(x.right, key) + size(x.left) + 1;
+        else return rank(x.left, key);
+    }
+
+    public int rank(Key key) {
+        return rank(root, key);
     }
 }
