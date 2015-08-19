@@ -1,0 +1,26 @@
+//  Performed by ZhaoPu.
+//  Examples tinyTale Tale and 1M random sentences.
+
+1. Binary Search Tree
+java FrequencyCounter 1 < tinyTale.txt
+time   0.023s
+java FrequencyCounter 8 < tale.txt
+time   0.206s
+java FrequencyCounter 10 < leipzig1M.txt
+time   22.02s
+
+2. Binary Search Array
+java FrequencyCounter 1 < tinyTale.txt
+time   0.023s
+java FrequencyCounter 8 < tale.txt
+time   0.214s
+java FrequencyCounter 10 < leipzig1M.txt
+time   75.91s
+
+3. Common Search Array
+java FrequencyCounter 1 < tinyTale.txt
+time   0.032s
+java FrequencyCounter 8 < tale.txt
+time   1.677s
+java FrequencyCounter 10 < leipzig1M.txt
+time   TOO LONG TOO RECORD
