@@ -247,4 +247,20 @@ public class BST<Key extends Comparable, Value> implements ST<Key, Value> {
     public int height() {
         return height(root);
     }
+
+    private Key randomKey(node x) {
+        int cmp = StdRandom.uniform(10);
+        if (cmp % 2 == 0) {
+            if (x.left != null)
+                return randomKey(x.left);
+        } else {
+            if (x.right != null)
+                return randomKey(x.right);
+        }
+        return x.key;
+    }
+
+    public Key randomKey() {
+        return randomKey(root);
+    }
 }
