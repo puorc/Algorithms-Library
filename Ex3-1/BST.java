@@ -5,6 +5,7 @@ import java.util.NoSuchElementException;
  */
 public class BST<Key extends Comparable, Value> implements ST<Key, Value> {
     private node root;
+    private node cache;
 
     private class node {
         Key key;
@@ -34,10 +35,15 @@ public class BST<Key extends Comparable, Value> implements ST<Key, Value> {
         int cmp = x.key.compareTo(key);
         if (cmp > 0) return get(x.left, key);
         else if (cmp < 0) return get(x.right, key);
-        else return x.val;
+        else {
+            cache = x;
+            return x.val;
+        }
     }
 
     public Value get(Key key) {
+        if (cache != null && key.compareTo(cache.key) == 0)
+            return cache.val;
         return get(root, key);
     }
 
@@ -46,12 +52,17 @@ public class BST<Key extends Comparable, Value> implements ST<Key, Value> {
         int cmp = x.key.compareTo(key);
         if (cmp > 0) x.left = put(x.left, key, value);
         else if (cmp < 0) x.right = put(x.right, key, value);
-        else x.val = value;
+        else {
+            x.val = value;
+            cache = x;
+        }
         x.N = size(x.left) + size(x.right) + 1;
         return x;
     }
 
     public void put(Key key, Value value) {
+        if (cache != null && key.compareTo(cache.key) == 0)
+            cache.val = value;
         root = put(root, key, value);
     }
 
