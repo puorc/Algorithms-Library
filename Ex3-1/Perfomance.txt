@@ -24,3 +24,11 @@ java FrequencyCounter 8 < tale.txt
 time   1.677s
 java FrequencyCounter 10 < leipzig1M.txt
 time   TOO LONG TOO RECORD
+
+4. BST non-recursive
+java FrequencyCounter 1 < tinyTale.txt
+time   0.029s
+java FrequencyCounter 8 < tale.txt
+time   0.182s
+java FrequencyCounter 10 < leipzig1M.txt
+time   21.058s
