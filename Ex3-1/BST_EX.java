@@ -74,4 +74,91 @@ public class BST_EX<Key extends Comparable<Key>, Value> {
             }
         }
     }
+
+    public Key min() {
+        node tmp = root;
+        while (tmp.left != null) {
+            tmp = tmp.left;
+        }
+        return tmp.key;
+    }
+
+    public Key max() {
+        node tmp = root;
+        while (tmp.right != null) {
+            tmp = tmp.right;
+        }
+        return tmp.key;
+    }
+
+    public Key floor(Key key) {
+        node tmp = root;
+        Key forMax = null;
+        while (tmp != null) {
+            int cmp = tmp.key.compareTo(key);
+            if (cmp > 0) {
+                if (forMax != null && tmp.key.compareTo(forMax) > 0 && tmp.key.compareTo(key) < 0)
+                    forMax = tmp.key;
+                tmp = tmp.left;
+            } else if (cmp == 0) return key;
+            else {
+                if (tmp.key.compareTo(key) < 0)
+                    forMax = tmp.key;
+                tmp = tmp.right;
+            }
+        }
+        return forMax;
+    }
+
+    private int height(node x) {
+        if (x == null) return 0;
+        int left = height(x.left);
+        int right = height(x.right);
+        return Math.max(left, right) + 1;
+    }
+
+    public int height() {
+        return height(root);
+    }
+
+    private void printWhitespaces(int count) {
+        for (int i = 0; i < count; i++)
+            System.out.print(" ");
+    }
+
+    private boolean isAllElementNull(Queue<node> a) {
+        for (node c : a)
+            if (c != null)
+                return false;
+        return true;
+    }
+
+    private void printLevel(Queue<node> nodes, int level, int maxLevel) {
+        if (isAllElementNull(nodes)) return;
+        int floor = maxLevel - level;
+        int firstSpaces = (int) Math.pow(2, (floor)) - 1;
+        int betweenSpaces = (int) Math.pow(2, (floor + 1)) - 1;
+        printWhitespaces(firstSpaces);
+        Queue<node> newnodes = new Queue<>();
+        for (node element : nodes) {
+            if (element != null) {
+                System.out.print(element.key);
+                newnodes.enqueue(element.left);
+                newnodes.enqueue(element.right);
+            } else {
+                System.out.print(" ");
+                newnodes.enqueue(null);
+                newnodes.enqueue(null);
+            }
+            printWhitespaces(betweenSpaces);
+        }
+        System.out.println("");
+        printLevel(newnodes, level + 1, maxLevel);
+    }
+
+    public void printLevel() {
+        Queue<node> nodes = new Queue<>();
+        nodes.enqueue(root);
+        printLevel(nodes, 1, height());
+    }
 }
