@@ -110,6 +110,20 @@ public class BST_EX<Key extends Comparable<Key>, Value> {
         return forMax;
     }
 
+    public Key select(int k) {
+        node tmp = root;
+        int counter = k;
+        while (tmp != null) {
+            if (size(tmp.left) == counter) return tmp.key;
+            else if (size(tmp.left) > counter) tmp = tmp.left;
+            else {
+                counter -= (size(tmp.left) + 1);
+                tmp = tmp.right;
+            }
+        }
+        return null;
+    }
+
     private int height(node x) {
         if (x == null) return 0;
         int left = height(x.left);
@@ -160,5 +174,18 @@ public class BST_EX<Key extends Comparable<Key>, Value> {
         Queue<node> nodes = new Queue<>();
         nodes.enqueue(root);
         printLevel(nodes, 1, height());
+    }
+
+    private void traverse(Queue a, node x) {
+        if (x == null) return;
+        traverse(a, x.left);
+        a.enqueue(x.key);
+        traverse(a, x.right);
+    }
+
+    public Iterable<Key> keys() {
+        Queue<Key> a = new Queue<>();
+        traverse(a, root);
+        return a;
     }
 }
