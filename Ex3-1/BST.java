@@ -263,4 +263,25 @@ public class BST<Key extends Comparable, Value> implements ST<Key, Value> {
     public Key randomKey() {
         return randomKey(root);
     }
+
+    private boolean equals(node x, node ax) {
+        if (x == null && ax == null)
+            return true;
+        else if (x != null && ax != null) {
+            if (x.key == ax.key && x.val == ax.val)
+                return equals(x.left, ax.left) & equals(x.right, ax.right);
+            else
+                return false;
+        } else return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (root == obj) return true;
+        if (obj.getClass().getName().equals(this.getClass().getName())) {
+            BST<Key, Value> a = (BST<Key, Value>) obj;
+            return equals(root, a.root);
+        }
+        return false;
+    }
 }
