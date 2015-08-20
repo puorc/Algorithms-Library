@@ -284,4 +284,45 @@ public class BST<Key extends Comparable, Value> implements ST<Key, Value> {
         }
         return false;
     }
+
+    private void printWhitespaces(int count) {
+        for (int i = 0; i < count; i++)
+            System.out.print(" ");
+    }
+
+    private boolean isAllElementNull(Queue<node> a) {
+        for (node c : a)
+            if (c != null)
+                return false;
+        return true;
+    }
+
+    private void printLevel(Queue<node> nodes, int level, int maxLevel) {
+        if (isAllElementNull(nodes)) return;
+        int floor = maxLevel - level;
+        int firstSpaces = (int) Math.pow(2, (floor)) - 1;
+        int betweenSpaces = (int) Math.pow(2, (floor + 1)) - 1;
+        printWhitespaces(firstSpaces);
+        Queue<node> newnodes = new Queue<>();
+        for (node element : nodes) {
+            if (element != null) {
+                System.out.print(element.key);
+                newnodes.enqueue(element.left);
+                newnodes.enqueue(element.right);
+            } else {
+                System.out.print(" ");
+                newnodes.enqueue(null);
+                newnodes.enqueue(null);
+            }
+            printWhitespaces(betweenSpaces);
+        }
+        System.out.println("");
+        printLevel(newnodes, level + 1, maxLevel);
+    }
+
+    public void printLevel() {
+        Queue<node> nodes = new Queue<>();
+        nodes.enqueue(root);
+        printLevel(nodes, 1, height());
+    }
 }
