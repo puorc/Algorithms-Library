@@ -4,12 +4,12 @@
 public class FrequencyCounter {
     public static void main(String[] args) {
         int minlen = Integer.parseInt(args[0]);
-        ST<String, Integer> st = new SequentialSearchST<>();
+        BST_EX<String, Integer> st = new BST_EX<>();
         Stopwatch watch = new Stopwatch();
         while (!StdIn.isEmpty()) {
             String word = StdIn.readString();
             if (word.length() < minlen) continue;
-            if (!st.contains(word)) {
+            if (st.get(word) == null) {
                 st.put(word, 1);
             } else
                 st.put(word, st.get(word) + 1);
