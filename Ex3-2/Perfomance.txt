@@ -32,3 +32,11 @@ java FrequencyCounter 8 < tale.txt
 time   0.182s
 java FrequencyCounter 10 < leipzig1M.txt
 time   21.058s
+
+5. Redblack BST
+java FrequencyCounter 1 < tinyTale.txt
+time   0.038s
+java FrequencyCounter 8 < tale.txt
+time   0.204s
+java FrequencyCounter 10 < leipzig1M.txt
+time   22.59s
