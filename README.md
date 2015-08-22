@@ -1,5 +1,5 @@
-# Algorithms-ZhaoPu
-Algorithms from Sedgewick  
+# Algorithms-Sedgewick ( 4th )
+#Solutions and code 
 
 Programmed by ZhaoPu
 
