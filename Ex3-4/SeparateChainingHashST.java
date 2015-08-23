@@ -9,24 +9,29 @@ public class SeparateChainingHashST<Key, Value> implements ST<Key, Value> {
     public SeparateChainingHashST() {
         M = 3;
         st = (SequentialSearchST<Key, Value>[]) new SequentialSearchST[M];
-        for (int i = 0; i < st.length; i++)
+        for (int i = 0; i < M; i++)
+            st[i] = new SequentialSearchST<>();
+        N = 0;
+    }
+
+    private SeparateChainingHashST(int cap) {
+        M = cap;
+        st = (SequentialSearchST<Key, Value>[]) new SequentialSearchST[M];
+        for (int i = 0; i < M; i++)
             st[i] = new SequentialSearchST<>();
         N = 0;
     }
 
     private void resize(int max) {
-        SequentialSearchST<Key, Value>[] tmp = (SequentialSearchST<Key, Value>[]) new SequentialSearchST[max];
+        SeparateChainingHashST<Key, Value> tmp = new SeparateChainingHashST<>(max);
         for (Key i : keys())
-            put(tmp, i, get(i), max);
-        M = max;
-        st = tmp;
+            tmp.put(i, get(i));
+        N = tmp.N;
+        M = tmp.M;
+        st = tmp.st;
     }
 
     private int hash(Key key) {
-        return (key.hashCode() & 0x7fffffff) % M;
-    }
-
-    private int hash(Key key, int M) {
         return (key.hashCode() & 0x7fffffff) % M;
     }
 
@@ -36,10 +41,6 @@ public class SeparateChainingHashST<Key, Value> implements ST<Key, Value> {
 
     public boolean isEmpty() {
         return N == 0;
-    }
-
-    private void put(SequentialSearchST<Key, Value>[] st, Key key, Value value, int M) {
-        st[hash(key, M)].put(key, value);
     }
 
     public void put(Key key, Value value) {
