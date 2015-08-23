@@ -70,7 +70,8 @@ public class SequentialSearchST<Key, Value> implements ST<Key, Value> {
     public void delete(Key key) {
         node tmp = first;
         if (tmp.key.equals(key)) {
-            first = null;
+            first = first.next;
+            N--;
             return;
         }
         while (tmp.next != null) {
