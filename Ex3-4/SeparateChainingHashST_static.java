@@ -7,7 +7,7 @@ public class SeparateChainingHashST_static<Key, Value> implements ST<Key, Value>
     private SequentialSearchST<Key, Value>[] st;
 
     public SeparateChainingHashST_static() {
-        M = 4096;
+        M = 101;
         st = (SequentialSearchST<Key, Value>[]) new SequentialSearchST[M];
         for (int i = 0; i < st.length; i++)
             st[i] = new SequentialSearchST<>();
