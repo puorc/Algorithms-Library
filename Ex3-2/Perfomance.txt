@@ -43,14 +43,22 @@ time   22.59s
 
 6. Hash ST Separate Chaining
 java FrequencyCounter 1 < tinyTale.txt
-time   0.023s
+time   0.024s
 java FrequencyCounter 8 < tale.txt
-time   0.806s
+time   0.796s
 java FrequencyCounter 10 < leipzig1M.txt
 time   TOO LONG
 
 7. Hash ST Separate Chaining Static
 java FrequencyCounter 1 < tinyTale.txt
-time   0.03s
+time   0.023s
 java FrequencyCounter 8 < tale.txt
-time   0.163s
+time   0.178s
+
+8. Hash ST Linear Array
+java FrequencyCounter 1 < tinyTale.txt
+time   0.022s
+java FrequencyCounter 8 < tale.txt
+time   0.154s
+java FrequencyCounter 10 < leipzig1M.txt
+time   19.68s
