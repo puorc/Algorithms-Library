@@ -51,6 +51,13 @@ public class Queue<Item> implements Iterable<Item> {
         N++;
     }
 
+    public void concat(Queue<Item> a) {
+        node tmp = first;
+        while (tmp.next != null)
+            tmp = tmp.next;
+        tmp.next = a.first;
+    }
+
     public Item dequeue() {
         Item tmp = first.item;
         if (N == 1) first = last = null;
