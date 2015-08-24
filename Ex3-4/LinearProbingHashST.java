@@ -14,7 +14,7 @@ public class LinearProbingHashST<Key, Value> implements ST<Key, Value> {
         vals = (Value[]) new Object[M];
     }
 
-    private LinearProbingHashST(int cap) {
+    public LinearProbingHashST(int cap) {
         M = cap;
         N = 0;
         keys = (Key[]) new Object[cap];
@@ -28,7 +28,7 @@ public class LinearProbingHashST<Key, Value> implements ST<Key, Value> {
     private void resize(int max) {
         LinearProbingHashST<Key, Value> t = new LinearProbingHashST<>(max);
         for (int i = 0; i < M; i++)
-            if (keys[i] != null && vals[i] != null)
+            if (keys[i] != null)
                 t.put(keys[i], vals[i]);
         N = t.N;
         M = t.M;
@@ -49,8 +49,6 @@ public class LinearProbingHashST<Key, Value> implements ST<Key, Value> {
         int i;
         for (i = hash(key); keys[i] != null; i = (i + 1) % M) {
             if (keys[i].equals(key)) {
-                if (vals[i] == null)
-                    N++;
                 vals[i] = value;
                 return;
             }
@@ -92,12 +90,8 @@ public class LinearProbingHashST<Key, Value> implements ST<Key, Value> {
         if (N > 0 && N < M / 4) resize(M / 2);
     }
 
-    public void deleteLater(Key key) {
-        for (int i = hash(key); keys[i] != null; i = (i + 1) % M)
-            if (keys[i].equals(key)) {
-                vals[i] = null;
-                N--;
-            }
+    public Key theSameIndex(Key key) {
+        return keys[hash(key)];
     }
 
     public Iterable<Key> keys() {
