@@ -75,6 +75,7 @@ public class LinearProbingHashST<Key, Value> implements ST<Key, Value> {
                 keys[i] = null;
                 vals[i] = null;
                 N--;
+                break;
             }
         }
         i = (i + 1) % M;
