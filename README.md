@@ -1,5 +1,5 @@
-# Algorithms-Sedgewick ( 4th ) Solutions and code 
+# Algorithms-Library by ZhaoPu ( Working )
 
 Programmed by ZhaoPu
 
-Just for learning algorithms
+Reference to Algorithms(4th)
